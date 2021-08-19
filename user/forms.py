@@ -1,6 +1,11 @@
 from django import forms
 
 
+class SignInForm(forms.Form):
+    username = forms.CharField(label="Username")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+
 class SignUpForm(forms.Form):
     username = forms.CharField(max_length=50, label="Username")
     password = forms.CharField(max_length=20, label="Password", widget=forms.PasswordInput)

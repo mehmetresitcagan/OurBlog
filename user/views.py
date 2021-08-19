@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
@@ -32,7 +32,26 @@ def signUpUser(request):
 
 
 def signInUser(request):
-    return render(request, "signIn.html")
+    form = SignInForm(request.POST or None)
+
+    context = {
+        "form": form
+    }
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if user is None:
+            messages.info(request,"Username or password is wrong")
+
+            return render(request, "signIn.html", context)
+
+        login(request, user)
+        messages.success(request, "Signed in successfully.")
+        return redirect("index")
+    return render(request, "signIn.html", context)
 
 
 def signOutUser(request):
