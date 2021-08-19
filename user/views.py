@@ -3,6 +3,7 @@ from .forms import SignUpForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def signUpUser(request):
 
         newUser.save()
         login(request, newUser)
+        messages.success(request, "Signed up successfully.")
         return redirect("index")
 
     context = {
