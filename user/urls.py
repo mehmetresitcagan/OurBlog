@@ -1,11 +1,12 @@
 from django.urls import path
-from article import views
+from user import views
 
 # Completes url of 'articles/'.
 
 app_name = "article"
 
 urlpatterns = [
-    path('create/',views.index),
+    path('signIn/',views.signInUser),
+    path('signUp/',views.signUpUser),
 
 ]
