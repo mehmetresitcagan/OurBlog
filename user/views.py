@@ -1,9 +1,14 @@
 from django.shortcuts import render
-
+from .forms import SignUpForm
 # Create your views here.
 
 def signUpUser(request):
-    return render(request, "signUp.html")
+    form = SignUpForm()
+    context = {
+        "form" : form
+    }
+
+    return render(request, "signUp.html", context)
 
 def signInUser(request):
     return render(request, "signIn.html")
