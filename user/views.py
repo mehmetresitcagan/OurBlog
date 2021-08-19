@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, SignInForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
@@ -55,4 +55,6 @@ def signInUser(request):
 
 
 def signOutUser(request):
-    pass
+    logout(request)
+    messages.success(request, "Signed out successfully.")
+    return redirect("index")

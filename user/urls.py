@@ -8,5 +8,6 @@ app_name = "article"
 urlpatterns = [
     path('signIn/',views.signInUser),
     path('signUp/',views.signUpUser),
+    path('signOut/', views.signOutUser),
 
 ]
