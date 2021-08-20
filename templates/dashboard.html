@@ -6,6 +6,39 @@
     <hr>
     <p>Welcome, {{ request.user.username }}</p>
     <hr>
-
     <a href="/articles/addArticle" class="btn btn-danger">Add Article</a>
+    <hr>
+
+    {% if articles %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Author</th>
+              <th scope="col">Date</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for article in articles  %}
+                  <tr>
+                      <th scope="row">{{ article.id }}</th>
+                      <td>{{ article.title }}</td>
+                      <td>{{ article.author }}</td>
+                      <td>{{ article.created_date }}</td>
+                      <td><a href="articles/update/{{ article.id }}" class="btn btn-primary">Update</a></td>
+                      <td><a href="articles/delete/{{ article.id }}" class="btn btn-danger">Delete</a></td>
+                </tr>
+              {% endfor %}
+
+          </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            Articles not found.
+        </div>
+    {% endif %}
+
 {% endblock body %}
