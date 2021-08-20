@@ -6,6 +6,7 @@ from article import views
 app_name = "articles"
 
 urlpatterns = [
-    path('dashboard/',views.dashboard, name="dashboard"),
-    path('addArticle',views.addArticle, name="addArticle")
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('addArticle/', views.addArticle, name="addArticle"),
+    path('article/<int:id>', views.detail, name="detail"),
 ]

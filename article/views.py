@@ -33,3 +33,11 @@ def addArticle(request):
         messages.success(request, "Article has been created successfully.")
         return redirect("index")
     return render(request, "addArticle.html", {"form": form})
+
+
+def detail(request, id):
+    article = Article.objects.filter(id = id).first()
+    context = {
+        "article" : article
+    }
+    return render(request, "detail.html", context)
