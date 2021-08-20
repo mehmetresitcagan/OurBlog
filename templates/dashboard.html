@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h3>Dashboard</h3>
+    <hr>
+    <p>Welcome, {{ request.user.username }}</p>
+    <hr>
+
+    <a href="/articles/addArticle" class="btn btn-danger">Add Article</a>
+{% endblock body %}
