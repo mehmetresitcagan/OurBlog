@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AddArticleForm
 from django.contrib import messages
 from .models import Article
@@ -36,7 +36,8 @@ def addArticle(request):
 
 
 def detail(request, id):
-    article = Article.objects.filter(id = id).first()
+    #article = Article.objects.filter(id = id).first()
+    article = get_object_or_404(Article, id=id)
     context = {
         "article" : article
     }
