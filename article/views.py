@@ -24,7 +24,7 @@ def dashboard(request):
 
 
 def addArticle(request):
-    form = AddArticleForm(request.POST or None)
+    form = AddArticleForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         article = form.save(commit=False)
         article.author = request.user
