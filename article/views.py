@@ -36,9 +36,9 @@ def addArticle(request):
 
 
 def detail(request, id):
-    #article = Article.objects.filter(id = id).first()
     article = get_object_or_404(Article, id=id)
     context = {
         "article" : article
     }
     return render(request, "detail.html", context)
+
